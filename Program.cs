@@ -15,7 +15,21 @@ namespace EmployeeManagement
         options => options.UseInMemoryDatabase("EmployeeDb")
       );
 
+      // Configure CORS policy
+      builder.Services.AddCors(options =>
+      {
+        options.AddPolicy("MyCors", builder =>
+        {
+          builder.WithOrigins("http://localhost:4200")
+          .AllowAnyHeader()
+          .AllowAnyMethod();
+        });
+      });
+
       var app = builder.Build();
+
+      // Apply the CORS configuration
+      app.UseCors("MyCors");
 
       app.MapGet("/", () => "Hello World!");
 
