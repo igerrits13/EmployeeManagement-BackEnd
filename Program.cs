@@ -1,6 +1,25 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using EmployeeManagement.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 
-app.MapGet("/", () => "Hello World!");
+namespace EmployeeManagement
+{
+  public class Program
+  {
+    public static void Main(string[] args)
+    {
+      var builder = WebApplication.CreateBuilder(args);
 
-app.Run();
+      // Add database context
+      builder.Services.AddDbContext<AppDbContext>(
+        options => options.UseInMemoryDatabase("EmployeeDb")
+      );
+
+      var app = builder.Build();
+
+      app.MapGet("/", () => "Hello World!");
+
+      app.Run();
+    }
+  }
+}
