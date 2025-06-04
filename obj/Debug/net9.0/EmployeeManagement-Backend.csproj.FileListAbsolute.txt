@@ -73,3 +73,8 @@
 /Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/obj/Debug/net9.0/EmployeeManagement-Backend.pdb
 /Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/obj/Debug/net9.0/EmployeeManagement-Backend.genruntimeconfig.cache
 /Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/obj/Debug/net9.0/ref/EmployeeManagement-Backend.dll
+/Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/bin/Debug/net9.0/Microsoft.OpenApi.dll
+/Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/ian/Desktop/Tutorials/WebDev/Udemy_ASP.NET/EmployeeManagementSystem/EmployeeManagement-Backend/EmployeeManagement-Backend/obj/Debug/net9.0/EmployeeManagement-Backend.MvcApplicationPartsAssemblyInfo.cs

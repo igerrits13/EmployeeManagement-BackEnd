@@ -33,12 +33,28 @@ namespace EmployeeManagement
       // Add controllers
       builder.Services.AddControllers();
 
+      // Add testing middleware
+      builder.Services.AddEndpointsApiExplorer();
+      builder.Services.AddSwaggerGen();
+
       var app = builder.Build();
+
+      // If in developer environment, show UI for testing
+      if (app.Environment.IsDevelopment())
+      {
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+          c.RoutePrefix = string.Empty;
+        });
+      }
 
       // Apply the CORS configuration
       app.UseCors("MyCors");
 
-      app.MapGet("/", () => "Hello World!");
+      // Map controllers
+      app.MapControllers();
 
       app.Run();
     }
