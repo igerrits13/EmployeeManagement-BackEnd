@@ -29,7 +29,7 @@ namespace EmployeeManagement.Controllers
 
     // Get a specified using the repository functions
     [HttpGet("{id}")]
-    public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeByIdAsync(int id)
+    public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeById(int id)
     {
       var employee = await _employeeRepository.GetByIdAsync(id);
 
@@ -42,12 +42,12 @@ namespace EmployeeManagement.Controllers
       return Ok(employee);
     }
 
-    // Add a new employee using the repository functions
+    // Add a new employee using the repository functions and return the created employee
     [HttpPost]
     public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
     {
       await _employeeRepository.AddEmployeeAsync(employee);
-      return Created();
+      return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);
     }
   }
 }
