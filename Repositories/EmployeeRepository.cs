@@ -1,5 +1,6 @@
 using EmployeeManagement.Data;
 using EmployeeManagement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Repositories
 {
@@ -13,29 +14,45 @@ namespace EmployeeManagement.Repositories
       _context = context;
     }
 
-    public Task AddEmployeeAsync(Employee employee)
+    // Add employee to the existing database
+    public async Task AddEmployeeAsync(Employee employee)
     {
-      throw new NotImplementedException();
+      await _context.Employees.AddAsync(employee);
+      await _context.SaveChangesAsync();
     }
 
-    public Task DeleteEmployeeAsync(int id)
+    // Remove an existing employee from the database
+    public async Task DeleteEmployeeAsync(int id)
     {
-      throw new NotImplementedException();
+      var employeeInDb = await _context.Employees.FindAsync(id);
+
+      // Ensure the employee exists
+      if (employeeInDb == null)
+      {
+        throw new KeyNotFoundException($"Employee with id {id} not found.");
+      }
+
+      _context.Employees.Remove(employeeInDb);
+      await _context.SaveChangesAsync();
     }
 
-    public Task<IEnumerable<Employee>> GetAllAsync()
+    // Return all existing employees in database
+    public async Task<IEnumerable<Employee>> GetAllAsync()
     {
-      throw new NotImplementedException();
+      return await _context.Employees.ToListAsync();
     }
 
-    public Task<Employee> GetByIdAsync(int id)
+    // Return a specified employee in database, allowing for possible null (?) response
+    public async Task<Employee?> GetByIdAsync(int id)
     {
-      throw new NotImplementedException();
+      return await _context.Employees.FindAsync(id);
     }
 
-    public Task UpdateEmployeeAsync(Employee employee)
+    // Update an existing employee in database
+    public async Task UpdateEmployeeAsync(Employee employee)
     {
-      throw new NotImplementedException();
+      _context.Employees.Update(employee);
+      await _context.SaveChangesAsync();
     }
   }
 }
