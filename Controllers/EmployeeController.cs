@@ -20,6 +20,28 @@ namespace EmployeeManagement.Controllers
       _employeeRepository = employeeRepository;
     }
 
+    // Get all employees using the repository functions
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployeesAsync()
+    {
+      return Ok(await _employeeRepository.GetAllAsync());
+    }
+
+    // Get a specified using the repository functions
+    [HttpGet("{id}")]
+    public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeByIdAsync(int id)
+    {
+      var employee = await _employeeRepository.GetByIdAsync(id);
+
+      // If not a valid id, return 404 not found
+      if (employee == null)
+      {
+        return NotFound();
+      }
+
+      return Ok(employee);
+    }
+
     // Add a new employee using the repository functions
     [HttpPost]
     public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
