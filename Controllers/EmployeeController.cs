@@ -52,18 +52,32 @@ namespace EmployeeManagement.Controllers
 
     // Remove an emplyee by id using the repository functions
     [HttpDelete("{id}")]
-      public async Task<ActionResult> DeleteEmployeeById(int id)
-      {
-        var employee = await _employeeRepository.GetByIdAsync(id);
+    public async Task<ActionResult> DeleteEmployeeById(int id)
+    {
+      var employee = await _employeeRepository.GetByIdAsync(id);
 
-      // If not a valid id, return 404 not found
+      // If not a valid id, return bad request
       if (employee == null)
-        {
-          return NotFound();
-        }
-
-        await _employeeRepository.DeleteEmployeeAsync(id);
-        return NoContent();
+      {
+        return BadRequest();
       }
+
+      await _employeeRepository.DeleteEmployeeAsync(id);
+      return NoContent();
     }
+
+    // Update an employee by id using the repository functions
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Employee>> UpdateEmployeeAsync(int id, Employee employee)
+    {
+      // If not a valid id, return bad request
+      if (id != employee.Id)
+      {
+        return BadRequest();
+      }
+
+      await _employeeRepository.UpdateEmployeeAsync(employee);
+      return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);
+    }
+  }
 }
